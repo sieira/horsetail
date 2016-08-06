@@ -75,11 +75,23 @@ WSGI_APPLICATION = 'horsetail.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': '',
     }
 }
 
+MONGODB_DATABASES = {
+    'default': {
+        'name': 'horsetail',
+        'host': 'localhost',
+        'password': '',
+        'username': '',
+        'tz_aware': True,  # if you using timezones in django (USE_TZ = True)
+    },
+}
+
+INSTALLED_APPS += ["django_mongoengine"]
+SESSION_ENGINE = 'django_mongoengine.sessions'
+SESSION_SERIALIZER = 'django_mongoengine.sessions.BSONSerializer'
 
 # Password validation
 # https://docs.djangoproject.com/en/1.10/ref/settings/#auth-password-validators
@@ -105,7 +117,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Europe/Paris'
 
 USE_I18N = True
 
